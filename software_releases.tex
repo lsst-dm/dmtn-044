@@ -1,0 +1,35 @@
+\documentclass[letterpaper]{scrartcl}
+
+\input meta.tex
+
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{comment}
+\usepackage{color}
+
+\newenvironment{note}[1][Note]
+{
+  \begin{displaymath}
+    \left[ \qquad
+    \begin{minipage}[h]{.75\linewidth}
+      \color{red} \footnotesize
+      \textbf{#1:} \newline
+      \color{black}
+}
+{
+    \end{minipage}
+    \normalsize
+    \qquad \right]
+  \end{displaymath}
+}
+
+\title{LSST Software Release Proposal}
+\author{John Swinbank}
+\date{\vcsdate\\\small{(\texttt{\vcsrevision})}}
+\begin{document}
+\maketitle
+
+Skeleton text.
+
+
+\end{document}
