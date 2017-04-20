@@ -1,0 +1,6 @@
+meta.tex
+software_releases-*.aux
+software_releases-*.out
+software_releases-*.log
+software_releases-*.pdf
+software_releases.tex.bak
