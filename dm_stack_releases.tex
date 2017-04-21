@@ -1,4 +1,4 @@
-\documentclass[DM]{lsstdoc}
+\documentclass[DM,toc]{lsstdoc}
 
 \input meta.tex
 
@@ -8,11 +8,8 @@
 \author{John Swinbank}
 \setDocRef{\lsstDocType-\lsstDocNum}
 \setDocDate{\vcsdate}
-\begin{document}
-\maketitle
 
-\begin{abstract}
-
+\setDocAbstract{
 This attempts to summarise the debate around, and suggest a path forward, for
 LSST software releases. Although some recommendations are made in
 \S\ref{sec:recommendations}, they are intended to serve as the basis of discussion,
@@ -21,8 +18,10 @@ rather than as a complete solution.
 This material is based on discussions with several team members over a
 considerable period. Errors are to be expected; apologies are extended;
 corrections are welcome.
+}
 
-\end{abstract}
+\begin{document}
+\maketitle
 
 \section{Consumers of Releases}
 
