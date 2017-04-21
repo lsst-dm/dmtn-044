@@ -1,35 +1,17 @@
-\documentclass[letterpaper]{scrartcl}
+\documentclass[DM]{lsstdoc}
 
 \input meta.tex
 
-\usepackage{color}
-\usepackage{hyperref}
-\usepackage{graphicx}
 \usepackage{microtype}
 
-\newenvironment{note}[1][Note]
-{
-  \begin{displaymath}
-    \left[ \qquad
-    \begin{minipage}[h]{.75\linewidth}
-      \color{red} \footnotesize
-      \textbf{#1:} \newline
-      \color{black}
-}
-{
-    \end{minipage}
-    \normalsize
-    \qquad \right]
-  \end{displaymath}
-}
-
-\title{LSST DM Software Release Considerations}
+\title[DM Software Releases]{LSST DM Software Release Considerations}
 \author{John Swinbank}
-\date{\vcsdate\\\small{(\texttt{\vcsrevision})}}
+\setDocRef{\lsstDocType-\lsstDocNum}
+\setDocDate{\vcsdate}
 \begin{document}
 \maketitle
 
-\section{Aims}
+\begin{abstract}
 
 This attempts to summarise the debate around, and suggest a path forward, for
 LSST software releases. Although some recommendations are made in
@@ -39,6 +21,8 @@ rather than as a complete solution.
 This material is based on discussions with several team members over a
 considerable period. Errors are to be expected; apologies are extended;
 corrections are welcome.
+
+\end{abstract}
 
 \section{Consumers of Releases}
 
