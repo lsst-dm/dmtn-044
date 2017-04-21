@@ -1,4 +1,4 @@
-DOCNAME = software_releases
+DOCNAME = dm_stack_releases
 
 # Version information extracted from git.
 GITVERSION := $(shell git log -1 --date=short --pretty=%h)

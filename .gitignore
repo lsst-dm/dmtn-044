@@ -1,6 +1,6 @@
 meta.tex
-software_releases-*.aux
-software_releases-*.out
-software_releases-*.log
-software_releases-*.pdf
-software_releases.tex.bak
+dm_stack_releases-*.aux
+dm_stack_releases-*.out
+dm_stack_releases-*.log
+dm_stack_releases-*.pdf
+dm_stack_releases.tex.bak
