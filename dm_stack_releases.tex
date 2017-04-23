@@ -215,6 +215,9 @@ Key issues include:
       \item{Generating and installing binary releases takes time, so there is
       still a potential speed-bump to developer workflow.}
 
+      \item{It is likely impossible to provide binaries targeting all possible
+      platforms which developers may reasonably wish to use.}
+
     \end{itemize}
 
   }
@@ -365,17 +368,40 @@ here.
       \texttt{master} to ensure that a well-tested and working version of the
       codebase is released. The details of implementing such a freeze, how
       developers might continue working while \texttt{master} is frozen, the
-      branch policy, etc, are regarded as out of scope for this document.}
+      branch policy, etc, are regarded as out of scope for this
+      document\footnote{Although it is not current practice, historically a
+      \texttt{next} branch has been used to enable ongoing development while
+      \texttt{master} is frozen.}.}
 
     \end{itemize}
 
   }
 
-  \item{Selection of what fixes are to be applied to the supported release,
-  and, where necessary, back-porting those fixes from current development,
-  will be a significant job of work. It has been suggested that this might
-  reasonably be undertaken by a dedicated Release Manager
-  (\S\ref{sec:releasemanager}).}
+  \item{Back-porting fixes:
+
+    \begin{itemize}
+
+      \item{While minor technical fixes will often be straightforward to
+      back-port to stable releases, deciding which changes to science logic
+      constitute ``bugs'' that require porting will require careful thought.}
+
+      \item{This process might reasonably be coordinated by a dedicated
+      Release manager (\S\ref{sec:releasemanager}), working in conjunction with
+      the DMCCB.}
+
+      \item{Porting substantial changes may become extremely complex as not
+      just the logic but the underlying infrastructure may be quite different.
+      The level of effort required is likely large.}
+
+      \item{Fixes, even those which are known to be required by an older
+      release, should \textit{always} be developed targeting \texttt{master}
+      and then back-ported (unless the code being fixed has already been
+      removed from \texttt{master}). No new work may be performed on release
+      branches.}
+
+    \end{itemize}
+
+  }
 
 \end{itemize}
 
@@ -395,18 +421,30 @@ Manager. Such an individual might be required to:
   features, etc);}
   \item{Collate and compile release notes and other supporting material for
   stable releases;}
-  \item{Work with the community and the CCB to understand which issues need to
-  be back-ported to stable releases;}
+  \item{Work with the community and the DMCCB to understand which issues need
+  to be back-ported to stable releases;}
   \item{Make fixes as required, including back-porting where necessary.}
 
 \end{itemize}
 
 Some of this work is currently being carried out by SQuaRE. Other parts of it,
-in particular back-porting of features, may require development expertise that
-is currently only found within other teams (e.g. Pipelines likely best
-understand how to backport Pipelines code, ditto for DAX, etc). If possible,
-centralising all of this work on one named individual would streamline the
-process and enable easier resource loading for the development teams.
+in particular back-porting of bug fixes, may require development expertise
+that is currently only found within other teams (e.g. Pipelines likely best
+understand how to backport Pipelines code, ditto for DAX, etc). Two possible
+approaches have been suggested here:
+
+\begin{itemize}
+
+  \item{Centralising all of this expertise in one named individual would
+  streamline the process and enable easier resource loading for the
+  development teams.}
+
+  \item{Having the release manager role be simply a managerial one (which may
+  rotate between project members) who can call on support from the development
+  teams may reduce the concentration of skill required in one individual, at
+  the expense of a more complex management and resourcing structure.}
+
+\end{itemize}
 
 \subsection{Code Restructuring}
 \label{sec:restructure}
@@ -471,6 +509,13 @@ binaries for all \texttt{master} builds, including time devoted to developing
 sensible resource management systems, etc. However, this is likely possible
 upon request.
 
+Note that the established variety of platforms upon which team members and
+their collaborators are working, together with issues such as C++ ABI
+compatibility \footnote{e.g.
+\url{https://wiki.gentoo.org/wiki/Upgrading\_GCC\#The\_special\_case\_C.2B.2B11\_.28and\_C.2B.2B14.29}}
+mean that it is likely impossible to guarantee to provide binaries compatible
+with every system.
+
 \section{Recommendations}
 \label{sec:recommendations}
 
@@ -511,14 +556,14 @@ plausible:
 \begin{itemize}
 
   \item{Appoint a Release Manager to coordinate long-term supported releases
-  in conjunction with the DM-CCB. This individual would (presumably) be part
+  in conjunction with the DMCCB. This individual would (presumably) be part
   of the SQuaRE team.}
 
   \item{Make releases by tagging \texttt{master}, then having the Release
   Manager maintain the branch by back-porting essential fixes.}
 
   \item{Where necessary, multiple stable branches may be maintained.
-  Developers will continue working on \texttt{master} with the RM and CCB
+  Developers will continue working on \texttt{master} with the RM and DMCCB
   back-porting work.}
 
   \item{Consider switching from a time-based to a feature-based release
