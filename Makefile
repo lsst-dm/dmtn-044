@@ -1,6 +1,6 @@
-DOCNAME = dm_stack_releases
 DOCTYPE = DMTN
 DOCNUMBER = 044
+DOCNAME = $(DOCTYPE)-$(DOCNUMBER)
 
 export TEXMFHOME = lsst-texmf/texmf
 
