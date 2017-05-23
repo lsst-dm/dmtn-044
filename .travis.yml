@@ -1,0 +1,23 @@
+sudo: true
+dist: trusty
+services:
+  - docker
+language: python
+python:
+  - '3.5'
+before_install:
+  - "pip install 'lander>=0.1.0,<0.2'"
+script:
+  # Compile PDF using containerized lsst-texmf
+  - "docker run --rm -v `pwd`:/workspace -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make'"
+after_success:
+  - "lander --pdf dm_stack_releases*.pdf --upload --lsstdoc DMTN-044.tex --env=travis --ltd-product $PRODUCT --handle $HANDLE"
+env:
+  global:
+    # Handle needs to be explicitly set until https://github.com/lsst-sqre/metasrc handles LaTeX inputs
+    - HANDLE="DMTN-044"
+    - PRODUCT="dmtn-044"
+    # LTD Keeper credentials
+    - secure: "kxWkecmhxXyjxHGia/69QJxIUlJGaP5z8sQZ/BjfXiOpJdlFJmcWt7pZ0fTIK5ElXH4szvuRQESzZCmQio1gw1ZmLv+1S2xuy83qTkuTArxnb+MC5h4LwTPedDcssAnquZXIBFwGjNnansXthROgzq368XXXni2FHhzVHPBRLZp3HhtPUgdiR86c4lQoYeHuw/vgMug5xW0dOIzcWS/zTh6RIajMc6xHRxI85JE5+jBptUd/RS74pwdMp/Lyniw7scCHI8dE9m6U5tP5lZjPbIzB/V8DG1bJNSHmHPzsLfUHCX//rWuiMFhfH1g7i/E2fRq0trWnhuRMS4nHc9dnkkMgU8KpiUaKT1hjZMO53Rnvwnh/OGE07vg6rMNkJNB9xCOsWve+ABEUL2bCRA9TbE0smjQCWIBdjRkNEgxAfTTzokKDb3ztU2Xf57XdgK+GQ2EQETEiC/OW+QocUJr4vFJz1LG8pnkJrD9ZBAt2NEcZZor5tgw7DSRpZ7lxQ8NUpNgcf//GWjOL3GNDUJDQQkbAJqVq0exAKQtkoq5eFVuHtJ3UgWbidRVNwmlxOo/Y5v3R5MKsX+5EmYA1OZcWVBPfuihizkMmU2AP6ekKIhYNcRQcAkRuP+ftdFrIVKOi+FYfyR4D6IA22sWjSWIY/fuQZflAvFwjR+xcqVP2HUY="
+    # AWS credentials
+    - secure: "sZQVmytckLz05yh75EoTEXmBup1x5VogrXtUlOy/1c2YsgIJlWiEtTi7GMeKVqyjD0FLT/VXBegQullWwabIWN+mkPaOrjAi1gVDSGn6SgZ+YzKTW/9xO76RbX33V1Et8a89N7g99FJOYr4tpOBq6oiKrs8wyrUHJIJbIgqlgoJOkW5L8DCTJxnZtO38zdUP4L0iSclHIeX7FpY0RQPnKkI2R4Jf1bV2+pQ2GSX6KLf+7bg+/EnecPJESeS8z0WGT5Af7d7QkcCn5bRZaQtuAlePrmCu7cN292u3nEoQBlwtsUc3EkZZtOSPvaRlDoadLFWZla2yUqIsxhAlKQYnOaSUnq5bBYOP1OsLYTQ5zfjYiGipOaYCVBtvCUHbq04ku0V16KNHorB5UEIPxjOToBuVQl5Xm4fVE3y0SDYmT9WFMfrlIPfZoxMmRv7dEOGjHy7bA8DcUH0isiBY7yxIOccMMJsmYiU4eF8ZzY2z7MGfiVONB3zSAaWv2VyR3NZHliWXmGScjnBhoYlvdFcx8go+MQlghtF0iAIVh+uK9Kv9pt9plxl0b0xHmFqK+U4yijoz+TAzkzuZPzyvmReuxzK5MfRrVNruBE57Z7plAGSUiu01ND4sfZlqJJfj/9lDnLAjy6bwH+dl6etEdvLNdJzRbva9UFy/McvWsB0GMIc="
