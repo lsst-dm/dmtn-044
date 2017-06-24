@@ -11,7 +11,7 @@ script:
   # Compile PDF using containerized lsst-texmf
   - "docker run --rm -v `pwd`:/workspace -w /workspace lsstsqre/lsst-texmf:latest sh -c 'make'"
 after_success:
-  - "lander --pdf dm_stack_releases*.pdf --upload --lsstdoc DMTN-044.tex --env=travis --ltd-product $PRODUCT --handle $HANDLE"
+  - "lander --pdf DMTN-044*.pdf --upload --lsstdoc DMTN-044.tex --env=travis --ltd-product $PRODUCT --handle $HANDLE"
 env:
   global:
     # Handle needs to be explicitly set until https://github.com/lsst-sqre/metasrc handles LaTeX inputs
