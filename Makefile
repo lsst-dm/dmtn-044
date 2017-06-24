@@ -1,6 +1,6 @@
-DOCNAME = dm_stack_releases
 DOCTYPE = DMTN
 DOCNUMBER = 044
+DOCNAME = $(DOCTYPE)-$(DOCNUMBER)
 
 export TEXMFHOME = lsst-texmf/texmf
 
@@ -13,6 +13,8 @@ ifneq "$(GITSTATUS)" ""
 endif
 
 $(DOCNAME)-$(GITVERSION)$(GITDIRTY).pdf: $(DOCNAME).tex meta.tex
+	xelatex -jobname=$(DOCNAME)-$(GITVERSION)$(GITDIRTY) $(DOCNAME)
+	bibtex $(DOCNAME)-$(GITVERSION)$(GITDIRTY)
 	xelatex -jobname=$(DOCNAME)-$(GITVERSION)$(GITDIRTY) $(DOCNAME)
 	xelatex -jobname=$(DOCNAME)-$(GITVERSION)$(GITDIRTY) $(DOCNAME)
 

@@ -1,7 +1,7 @@
 meta.tex
-dm_stack_releases-*.aux
-dm_stack_releases-*.out
-dm_stack_releases-*.log
-dm_stack_releases-*.pdf
-dm_stack_releases-*.toc
-dm_stack_releases.tex.bak
+DMTN-044-*.aux
+DMTN-044-*.out
+DMTN-044-*.log
+DMTN-044-*.pdf
+DMTN-044-*.toc
+DMTN-044.tex.bak
